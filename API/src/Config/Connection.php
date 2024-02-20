@@ -13,8 +13,8 @@ class Connection {
     protected function Conection () : PDO{
         return $this->connection;
     }
-    protected function CloseConnection ($cons) : void{
-        $this->connection = false;
+    protected function CloseConnection ($cons, $connection = null) : void{
+        $connection = false;
         $cons = false;
     }
 }

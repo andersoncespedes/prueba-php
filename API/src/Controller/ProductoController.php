@@ -2,28 +2,24 @@
 
 class ProductoController extends BaseController
 {
-    public function show() {
+    public function show() : void {
         $strErrorDesc = '';
         $requestMethod = $_SERVER["REQUEST_METHOD"];
         $arrQueryStringParams = $this->getQueryStringParams();
         if (strtoupper($requestMethod) == 'GET') {
             try {
-                $userModel = new UserModel();
+                $producto = new ProductoModel();
                 $intLimit = 10;
-                if (isset($arrQueryStringParams['limit']) && $arrQueryStringParams['limit']) {
-                    $intLimit = $arrQueryStringParams['limit'];
-                }
-                $arrUsers = $userModel->getUsers($intLimit);
+                $arrUsers = $producto->getAll();
                 $responseData = json_encode($arrUsers);
             } catch (Error $e) {
-                $strErrorDesc = $e->getMessage().'Something went wrong! Please contact support.';
+                $strErrorDesc = $e->getMessage().' Something went wrong! Please contact support.';
                 $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
             }
         } else {
             $strErrorDesc = 'Method not supported';
             $strErrorHeader = 'HTTP/1.1 422 Unprocessable Entity';
         }
-        // send output 
         if (!$strErrorDesc) {
             $this->sendOutput(
                 $responseData,
@@ -34,6 +30,34 @@ class ProductoController extends BaseController
                 array('Content-Type: application/json', $strErrorHeader)
             );
         }
+    }
+    public function showOne() : void{
+        $strErrorDesc = '';
+        $requestMethod = $_SERVER["REQUEST_METHOD"];
+        if(strtoupper($requestMethod) == "GET"){ 
+            try{
+                $code = $_GET["code"];
+                $product = new ProductoModel();
+                if($code == null){
+                    throw new Error("Doesn't exist this product");
+                }
+                $productOne = $product->showOne($code);
+                $response = json_encode($productOne);
+            }catch(Error $e){
+                $strErrorDesc = $e->getMessage();
+                $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
+            }
+            
+        }
+        else {
+            $strErrorDesc = 'Method not supported';
+            $strErrorHeader = 'HTTP/1.1 422 Unprocessable Entity';
+        }
+        $this->sendOutput(
+            $response,
+            array('Content-Type: application/json', 'HTTP/1.1 200 OK')
+        );
+        
     }
 }
 

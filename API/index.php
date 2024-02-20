@@ -9,5 +9,6 @@ if ((isset($uri[4]) && $uri[4] != 'user') || !isset($uri[4])) {
 require PROJECT_ROOT_PATH . "\src\Controller\ProductoController.php";
 $objFeedController = new ProductoController();
 $strMethodName = $uri[5];
-echo $objFeedController->show();
+echo $objFeedController->{$strMethodName}();
+
 ?>
