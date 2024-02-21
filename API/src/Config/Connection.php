@@ -1,9 +1,9 @@
 <?php
 class Connection {
-    protected string $host = "localhost";
-    protected string $password = "123456";
-    protected string $database = "prueba-tecnica";
-    protected string $user = "root";
+    protected string $host = HOST;
+    protected string $password = PASSWORD;
+    protected string $database = DATABASE;
+    protected string $user = USER;
     protected string $stringConnection;
     protected PDO $connection;
     public function __construct(){
