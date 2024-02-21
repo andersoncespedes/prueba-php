@@ -1,0 +1,15 @@
+body{
+    display: flex;
+    flex-wrap: wrap;
+    height: 100vh;
+    background-color: rgb(212, 209, 209);
+    
+
+}
+.table-container_products{
+    background-color: white;
+    padding: 2rem;
+    box-shadow: 0 0 5px inset black;
+    margin: auto;
+    border-radius: 10px;
+}

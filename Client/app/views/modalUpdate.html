@@ -16,7 +16,7 @@
             </div>
             <div class="form-group col-md-8">
                 <label>Category:</label>
-                <input type="text" value="Comida"  ng-model="productDataUp.Category" class="form-control" required><br>
+                <select ng-controller = "CategryController" ng-model="productDataUp.Category" ng-options="option.Name as option.Name for option in options" class="form-control"></select>
             </div>
             <button type="submit">Save</button>
         </form>

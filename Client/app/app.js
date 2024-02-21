@@ -1,4 +1,4 @@
-var app = angular
+angular
   .module("myApp", [])
   .constant("API_URL", "http://localhost/prueba-tecnica/API/index.php/")
   //Controller
@@ -7,8 +7,6 @@ var app = angular
     "ProductService",
     "$window",
     function ($scope, ProductService, $window) {
-     
-   
       //declaration of variables
       $scope.productDataUp = {};
       $scope.productData = {};
@@ -102,3 +100,20 @@ var app = angular
       };
     },
   ]);
+
+  angular
+  .module("myApp")
+  .controller("CategryController", ["$scope","CategoryService", function ($scope, CategoryService){
+    CategoryService.getCategories()
+            .then(function (response) {
+                $scope.options = response.data;
+                $scope.selectedOption = 'Comida';
+            })
+            .catch(function(error){
+                console.log(err);
+            })
+  }]).service("CategoryService", ["$http", "API_URL", function ($http, API_URL){
+    this.getCategories = function () {
+        return $http.get(`${API_URL}category/show`);
+      };
+  }])
