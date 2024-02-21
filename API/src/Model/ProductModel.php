@@ -48,24 +48,23 @@ Class ProductoModel extends Connection{
             
             
     }
-    public function update(string $id, stdClass $datos) : bool{
+    public function update(string $code, stdClass $datos) : bool{
         try{
         $now = new DateTime();
         $consulta = $this->Conection();
         
         $prepare = $consulta
             ->prepare("UPDATE Product
-            SET Code = ?, Name = ?,  Category = ?, Price = ?, updatedAt = ?
+            SET Name = ?,  Category = ?, Price = ?, updatedAt = ?
             WHERE Code = ? ");
         $prepare
         ->execute(
             array(
-                $datos->code, 
                 $datos->Name, 
                 $datos->Category, 
                 $datos->Price, 
                 $now->format('Y-m-d H:i:s'),
-                $id
+                $code
             )
         );
         $this->CloseConnection($prepare, $consulta);

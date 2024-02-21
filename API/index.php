@@ -11,13 +11,27 @@ if($method == "OPTIONS") {
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $uri = explode( '/', $uri );
-if ((isset($uri[4]) && $uri[4] != 'product') || !isset($uri[4])) {
+if (!isset($uri[4])) {
     header("HTTP/1.1 404 Not Found");
     exit();
 }
 require PROJECT_ROOT_PATH . "\src\Controller\ProductController.php";
-$objFeedController = new ProductoController();
+require PROJECT_ROOT_PATH . "\src\Controller\CategoryController.php";
+
+$objFeedProductController = new ProductoController();
+$objFeedCategoryController = new CategoryController();
 $strMethodName = $uri[5];
-echo $objFeedController->{$strMethodName}();
+if($uri[4] == "category"){
+    echo $objFeedCategoryController->{$strMethodName}();
+}else if($uri[4] == "product"){
+    echo $objFeedProductController->{$strMethodName}();
+}else{
+    header("HTTP/1.1 404 Not Found");
+    exit();
+}
+
+
+
+
 
 ?>
