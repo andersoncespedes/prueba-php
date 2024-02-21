@@ -3,34 +3,51 @@
 Class ProductoModel extends Connection
 {
     private function validation(stdClass $data) : Error | bool {
+        // if there's a number in data->name then throw an error
       if(preg_match('/\d/', $data->Name)){
         return throw new Error("it doesn't allow Numbers in Name");
-      }else if(preg_match('/[a-zA-Z]/', $data->Price)){
+      }
+        // if there's a character in data->price then throw an error
+      else if(preg_match('/[a-zA-Z]/', $data->Price)){
         return throw new Error("it doesn't allow characters in Price");
-      }else if($data->Price < 0){
+      }
+      // if $data->price < 0 then throw an error
+      else if($data->Price < 0){
         return throw new Error("it doesn't allow Number under 0 in Price");
-      }else if (strlen($data->Name) < 3){
+      }
+      // if $data->name length is lower than 0 then throw an error
+      else if (strlen($data->Name) < 3){
         return throw new Error("it doesn't allow less than 3 characters in Name");
       }
+      // if none of them are true then return true
       else{
         return true;
       }
     }   
     // query to show all of the products
     public function getAll() : array{
-        $consulta = $this->Conection();
-        $query = $consulta->query("select * from Product");
-        $resultados = $query->fetchAll(PDO::FETCH_ASSOC);
-        $this->CloseConnection($query, $consulta);
-        return $resultados;
+        // connection started
+        $consult = $this->Conection();
+        // Query to get all of the products
+        $query = $consult->query("select * from Product");
+        // Results of the query
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        $this->CloseConnection($query, $consult);
+        // returning results
+        return $results;
     }
     // query to show one of the products
     public function showOne(string $code) {
-        $consulta = $this->Conection();
-        $query = $consulta->query("select * from Product where code = '".$code."'");
-        $resultado = $query->fetch(PDO::FETCH_ASSOC);
+        // connection started
+        $consult = $this->Conection();
+        // Query to get one of the products with the code passed by parameter
+        $query = $consult->query("select * from Product where code = '".$code."'");
+        // Results of the query
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        // Close Connection
         $this->CloseConnection($query, $consulta);
-        return $resultado != false ? $resultado : [];
+        // returning results if result = false then return [] else returns the results
+        return $result != false ? $result : [];
     }
     // query to create a new product
     public function create(stdClass $datos) : bool | Error{
@@ -49,7 +66,7 @@ Class ProductoModel extends Connection
             $now = new DateTime();
             // connection started
             $consulta = $this->Conection();
-            // query prepare to excecute
+            // query prepare to excecute to create a new product
             $prepare = $consulta
             ->prepare("INSERT INTO 
             Product(Code, Name,  Category, Price, createdAt, UpdatedAt) 
@@ -89,14 +106,15 @@ Class ProductoModel extends Connection
         //  intance of the class DateTime to get the current date
 
         $now = new DateTime();
-        $consulta = $this->Conection();
         // connection started
-        
+        $consulta = $this->Conection();
+        // query prepare to UPDATE a product where Code = code(parameter)
         $prepare = $consulta
             ->prepare("UPDATE Product
             SET Name = ?,  Category = ?, Price = ?, updatedAt = ?
             WHERE Code = ? ");
         $prepare
+        // query excecuted
         ->execute(
             array(
                 $datos->Name, 
@@ -106,18 +124,21 @@ Class ProductoModel extends Connection
                 $code
             )
         );
+         // close connection
         $this->CloseConnection($prepare, $consulta);
         return true;
     }catch(Error $e){
         return $e;
     }
     }
+    // query to delete a product
     public function delete(string $code) : bool{
-        $consulta = $this->Conection();
-        $consulta
+        // connection started
+        $consult = $this->Conection();
+        $consult
             ->query("DELETE FROM Product WHERE code = '".$code."'");
-        $this->CloseConnection($query, $consulta);
-        if(!$consulta) return false;
+        $this->CloseConnection($query, $consult);
+        if(!$consult) return false;
         return true;
     }
 
