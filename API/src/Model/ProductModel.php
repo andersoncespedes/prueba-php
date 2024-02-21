@@ -32,6 +32,7 @@ Class ProductoModel extends Connection
         $query = $consult->query("select * from Product");
         // Results of the query
         $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        // Close Connection
         $this->CloseConnection($query, $consult);
         // returning results
         return $results;
@@ -45,7 +46,7 @@ Class ProductoModel extends Connection
         // Results of the query
         $result = $query->fetch(PDO::FETCH_ASSOC);
         // Close Connection
-        $this->CloseConnection($query, $consulta);
+        $this->CloseConnection($query, $consult);
         // returning results if result = false then return [] else returns the results
         return $result != false ? $result : [];
     }
