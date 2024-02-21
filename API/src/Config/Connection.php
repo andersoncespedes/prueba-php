@@ -8,10 +8,9 @@ class Connection {
     protected PDO $connection;
     public function __construct(){
         $this->stringConnection = 'mysql:host='.$this->host .';dbname='. $this->database;
-        $this->connection = new PDO($this->stringConnection, $this->user, $this->password);
     }
     protected function Conection () : PDO{
-        return $this->connection;
+        return new PDO($this->stringConnection, $this->user, $this->password);
     }
     protected function CloseConnection ($cons, $connection = null) : void{
         $connection = false;
