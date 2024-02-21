@@ -1,0 +1,19 @@
+use prueba;
+SELECT l.titulo as Titulo, l.autor as Autor, u.nombre as "Usuario Prestatario", p.fecha_prestamo as "Fecha de Prestamo", p.fecha_devolucion as "Fecha de Devolucion" 
+FROM libro l 
+INNER JOIN prestamo p
+ON l.id = p.libro_id
+INNER JOIN usuario u
+ON u.id = p.usuario_id
+WHERE p.fecha_devolucion IS NOT NULL;
+
+SELECT
+ l.titulo as Titulo, l.autor as Autor
+, u.nombre as "Usuario Prestatario",
+ p.fecha_prestamo as "Fecha de Prestamo"
+FROM libro l 
+INNER JOIN prestamo p
+ON l.id = p.libro_id
+INNER JOIN usuario u
+ON u.id = p.usuario_id
+WHERE p.fecha_devolucion IS NULL AND DATEDIFF(CURRENT_DATE, p.fecha_prestamo) > 6;
