@@ -1,7 +1,8 @@
 <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
+        <h5 class="modal-title">Update Product</h5>
+
       </div>
       <div class="modal-body">
         <form ng-submit="updateProduct()" class="row">
@@ -17,8 +18,9 @@
             <div class="form-group col-md-8">
                 <label>Category:</label>
                 <select ng-controller = "CategryController" ng-model="productDataUp.Category" ng-options="option.Name as option.Name for option in options" class="form-control"></select>
-            </div>
-            <button type="submit">Save</button>
+            </div><br>
+              <button type="submit" class="btn btn-success">Save</button>
+            
         </form>
       </div>
       <div class="modal-footer">

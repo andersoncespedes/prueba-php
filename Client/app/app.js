@@ -13,8 +13,13 @@ angular
       // Get all products
       ProductService.getProducts().then(function (response) {
      // datatable
+        $('#table thead th').eq(3).attr('width', '30%');
         $(document).ready(function() {
-            $('#table').DataTable();
+            $('#table').DataTable({
+                paging: false,
+                scrollCollapse: true,
+                scrollY: '200px'
+            });
         });
         $scope.products = response.data;
       });
@@ -107,7 +112,7 @@ angular
     CategoryService.getCategories()
             .then(function (response) {
                 $scope.options = response.data;
-                $scope.selectedOption = 'Comida';
+                $scope.productData.Category =  response.data[0].Name;
             })
             .catch(function(error){
                 console.log(err);

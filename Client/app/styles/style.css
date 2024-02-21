@@ -3,7 +3,7 @@ body{
     flex-wrap: wrap;
     height: 100vh;
     background-color: rgb(212, 209, 209);
-    
+    font-family: Verdana , Arial, Helvetica, sans-serif;
 
 }
 .table-container_products{

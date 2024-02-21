@@ -1,7 +1,7 @@
 <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
+      <div class="modal-header center-block">
+        <h5 class="modal-title">Save Product</h5>
       </div>
       <div class="modal-body">
         <form ng-submit="saveProduct()" class="row">
@@ -18,7 +18,8 @@
                 <select ng-controller = "CategryController" ng-model="productData.Category" ng-options="option.Name as option.Name for option in options" class="form-control">
               </select>
             </div>
-            <button type="submit">Save</button>
+            <br>
+            <button type="submit" class="btn btn-success">Save</button>
         </form>
       </div>
       <div class="modal-footer">
