@@ -1,0 +1,29 @@
+<table class="table table-bordered display" id="table">
+    <thead>
+        <tr>
+            <td>Code</td>
+            <td>Name</td>
+            <td>Price</td>
+            <td>Category</td>
+            <td>Created At</td>
+            <td>Updated At</td>
+            <td>Options</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="product in products">
+            <td>{{product.Code}}</td>
+            <td>{{product.Name}}</td>
+            <td>{{product.Price}}</td>
+            <td>{{product.Category}}</td>
+            <td>{{product.createdAt}}</td>
+            <td>{{product.updatedAt}}</td>
+            <td>
+                <button class="btn btn-warning" ng-click="getOne(product.Code)" data-toggle="modal"
+                    data-target="#ModalUpdate">Update</button>
+                <button class="btn btn-danger" ng-click="deleteProduct(product.Code)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+
+</table>

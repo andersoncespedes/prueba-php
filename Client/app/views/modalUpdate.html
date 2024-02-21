@@ -6,6 +6,7 @@
       <div class="modal-body">
         <form ng-submit="updateProduct()" class="row">
             <div class="form-group col-md-6">
+                <input type="hidden" ng-model="productDataUp.Code">
                 <label>Name:</label>
                 <input type="text" ng-model="productDataUp.Name"  class="form-control" required>
             </div>
