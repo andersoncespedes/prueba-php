@@ -70,8 +70,13 @@ Class ProductoModel extends Connection{
         return false;
     }
     }
-    public function delete() : bool{
-
+    public function delete(string $code) : bool{
+        $consulta = $this->Conection();
+        $consulta
+            ->query("DELETE FROM Product WHERE code = '".$code."'");
+        $this->CloseConnection($query, $consulta);
+        if(!$consulta) return false;
+        return true;
     }
 
 }

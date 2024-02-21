@@ -3,7 +3,7 @@
 class BaseController extends Connection
 {
     public function __call($name, $arguments){
-        $this->sendOutput('No Se Encuentra ', array('HTTP/1.1 404 Not Found'));
+        $this->sendOutput('ERROR NOT FOUND', array('HTTP/1.1 404 Not Found'));
     }
     protected function sendOutput($data, $httpHeaders=array())
     {
