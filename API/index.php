@@ -1,5 +1,9 @@
 <?php
 require __DIR__ . "/bootstrap.php";
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $uri = explode( '/', $uri );
 if ((isset($uri[4]) && $uri[4] != 'user') || !isset($uri[4])) {
