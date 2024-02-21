@@ -10,12 +10,38 @@
 </head>
 
 <body ng-app="myApp" ng-controller="ProductController">
+    <div ng-include="'views/ModalUpdate.html'"  class="modal fade" id="ModalUpdate" tabindex="-1" role="dialog" aria-labelledby="ModalUpdate" aria-hidden="true"></div>
+    <div ng-include="'views/modalSave.html'"  class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"></div>
     <div class="container">
+        <center>
+            <h2>Products</h2>
+        </center>
+        <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Create
+        </button>
         <table class="table table-bordered">
             <tr>
                 <td>Code</td>
                 <td>Name</td>
-                <td>Name</td>
+                <td>Price</td>
+                <td>Category</td>
+                <td>Created At</td>
+                <td>Updated At</td>
+                <td>Options</td>
+            </tr>
+            <tr ng-repeat = "product in products">
+                <td>{{product.Code}}</td>
+                <td>{{product.Name}}</td>
+                <td>{{product.Price}}</td>
+                <td>{{product.Category}}</td>
+                <td>{{product.createdAt}}</td>
+                <td>{{product.updatedAt}}</td>
+                <td>
+                    <button class="btn btn-warning" ng-click = "getOne(product.Code)" data-toggle="modal" data-target="#ModalUpdate">Update</button>
+                    <button class="btn btn-danger">Delete</button>
+
+                </td>
+
             </tr>
         </table>
     </div>
