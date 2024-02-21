@@ -89,7 +89,7 @@ class ProductoController extends BaseController
         if(!$strErrorDesc){
             $this->sendOutput(
                 $body,
-                array('Content-Type: application/json', 'HTTP/1.1 201 Created')
+                array('Content-Type: application/json', 'HTTP/1.1 200 Created')
             );
         }else{
             $this->sendOutput(json_encode(array('error' => $strErrorDesc)), 

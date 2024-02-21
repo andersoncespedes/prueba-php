@@ -19,6 +19,10 @@ Class ProductoModel extends Connection{
 
     public function create(stdClass $datos) : bool{
         try{
+            $key = '';
+            $pattern = '1234567890abcdefghijklmnopqrstuvwxyz';
+            $max = strlen($pattern)-1;
+            for($i=0;$i < 40;$i++) $key .= $pattern[mt_rand(0,$max)];
             $now = new DateTime();
             $consulta = $this->Conection();
             $prepare = $consulta
@@ -28,7 +32,7 @@ Class ProductoModel extends Connection{
             $prepare
             ->execute(
                 array(
-                    $datos->code, 
+                    $key, 
                     $datos->Name, 
                     $datos->Category, 
                     $datos->Price, 
