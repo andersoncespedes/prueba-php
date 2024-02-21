@@ -1,6 +1,6 @@
 <?php 
 
-class BaseController extends Connection
+class BaseController 
 {
     public function __call($name, $arguments){
         $this->sendOutput('ERROR NOT FOUND', array('HTTP/1.1 404 Not Found'));
