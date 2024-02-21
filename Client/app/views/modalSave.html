@@ -1,28 +1,35 @@
+<!---Modalto save a new product -->
 <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header center-block">
         <h5 class="modal-title">Save Product</h5>
       </div>
       <div class="modal-body">
+         <!--- Main Form-->
         <form ng-submit="saveProduct()" class="row">
             <div class="form-group col-md-6">
+                <!--- Name section--->
                 <label>Name:</label>
                 <input type="text" ng-model="productData.Name"  class="form-control" required>
             </div>
             <div class="form-group col-md-4">
+                <!--- Price section--->
                 <label>Price:</label>
                 <input type="number" step="0.01" ng-model="productData.Price" class="form-control" required><br>
             </div>
             <div class="form-group col-md-8">
+                <!--- Category section--->
                 <label>Category:</label>
                 <select ng-controller = "CategryController" ng-model="productData.Category" ng-options="option.Name as option.Name for option in options" class="form-control">
               </select>
             </div>
             <br>
+            <!---submit data -->
             <button type="submit" class="btn btn-success">Save</button>
         </form>
       </div>
       <div class="modal-footer">
+        <!--- close button -->
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>

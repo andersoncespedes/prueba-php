@@ -12,18 +12,23 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
 
 </head>
-
+<!--- Initialize myApp module -->
 <body ng-app="myApp" ng-controller="ProductController">
+    <!--- including view that contains modal to update product -->
     <div ng-include="'views/ModalUpdate.html'"  class="modal fade" id="ModalUpdate" tabindex="-1" role="dialog" aria-labelledby="ModalUpdate" aria-hidden="true"></div>
+    <!--- including view that contains modal to create product -->
     <div ng-include="'views/modalSave.html'"  class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"></div>
+    <!---- Main Container Of myApp -->
     <div class="table-container_products">
         <center>
-            <h2>Products</h2>
+            <h2>PRODUCTS</h2>
             <hr>
         </center>
+        <!--- Button to appear the modal of creation a product -->
         <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
             Create
         </button>
+        <!--- Including the view table to show all of the products -->
         <div ng-include = "'views/table.html'">
 
         </div>
@@ -41,6 +46,7 @@
     </script>
     
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+<!--- Main js document -->
 <script src="./app.js"></script>
 
 </html>
